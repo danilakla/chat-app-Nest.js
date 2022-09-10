@@ -1,0 +1,96 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Roles {
+  id: Int!
+  role: String!
+  users: Users!
+}
+
+type Profile {
+  id: Int!
+  name: String!
+  lastname: String!
+  image: String!
+  user: Users!
+}
+
+type Users {
+  id: Int!
+  email: String!
+  isActive: Boolean!
+  roles: [Roles!]!
+}
+
+type Authentication {
+  access_token: String!
+  refresh_token: String!
+  user: Users!
+}
+
+type Authorized {
+  access_token: String!
+  refresh_token: String!
+  user: Users!
+}
+
+type Query {
+  users: [Users!]!
+  user: Users!
+  roles: [Roles!]!
+  role(role: String!): Roles!
+  getProfile: Profile!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): Users!
+  addRole(addRoleInput: AddRoleInput!): Users!
+  createRole(createRoleInput: CreateRoleInput!): Roles!
+  login(createUserInput: CreateUserInput!): Authentication!
+  registration(createUserInput: CreateUserInput!): Authentication!
+  forgotPassword(email: String!): String!
+  updatePassword(updatePasswordInput: UpdatePasswordInput!): String!
+  updateRefreshToken: Authorized!
+  logout: Boolean!
+  isAuth: Boolean!
+  loginGoogle(checkGoogleTokenInput: CheckGoogleTokenInput!): Authentication!
+  registrationGoogle(checkGoogleTokenInput: CheckGoogleTokenInput!): Authentication!
+  createProfile(createProfileInput: CreateProfileInput!): Profile!
+  updateUserProfile(updateProfileInput: UpdateProfileInput!): Profile!
+}
+
+input CreateUserInput {
+  email: String!
+  password: String!
+}
+
+input AddRoleInput {
+  role: String!
+  userId: Int!
+}
+
+input CreateRoleInput {
+  role: String!
+}
+
+input UpdatePasswordInput {
+  token: String!
+  password: String!
+}
+
+input CheckGoogleTokenInput {
+  token: String!
+}
+
+input CreateProfileInput {
+  name: String!
+  lastname: String!
+  image: String
+}
+
+input UpdateProfileInput {
+  name: String!
+  lastname: String!
+  image: String
+}
